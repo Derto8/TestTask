@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Task_2.Models;
+using Task_2.Models.ModelRestCountry;
 using Task_2.Requests;
 
 namespace Task_2.Controllers
@@ -14,20 +15,23 @@ namespace Task_2.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            var listCountries = await RestCountriesRequests.GetAllCountriesAsync();
+            return View(await RestCountriesRequests.GetAllCountriesAsync(cancellationToken));
+        }
 
-            foreach (var countries in listCountries)
-            {
-                Debug.WriteLine(countries.name.official);
-                foreach(var capital in countries.capital)
-                {
-                    Debug.WriteLine(capital);
-                }
-            }
+        [HttpPost]
+        public async Task<IActionResult> Index(string nameCountry, CancellationToken cancellationToken)
+        {
+            var country = await RestCountriesRequests.GetCountryAsync(nameCountry, cancellationToken);
+            if (country != null)
+                return RedirectToAction("Details", "Home", new { nameCountry = nameCountry});
+            return View(await RestCountriesRequests.GetAllCountriesAsync(cancellationToken));
+        }
 
-            return View(listCountries);
+        public async Task<IActionResult> Details(string nameCountry, CancellationToken cancellationToken)
+        {
+            return View(await RestCountriesRequests.GetCountryAsync(nameCountry, cancellationToken));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

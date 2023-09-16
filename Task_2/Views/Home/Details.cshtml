@@ -1,0 +1,68 @@
+﻿@model List<CountriesViewModel>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Название страны</th>
+                <th scope="col">Столица</th>
+                <th scope="col">Регион</th>
+                <th scope="col">Языки</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var country in Model)
+                {
+                    string capitals = "";
+
+                    if (country.Capital != null)
+                    {
+                        foreach (var capital in country.Capital)
+                        {
+                            if (capitals != "")
+                            {
+                                capitals += $", {capital}";
+                            }
+                            else
+                            {
+                                capitals = capital;
+                            }
+                        }
+                    }
+
+                    string languages = "";
+
+                    if(country.Languages != null)
+                    {
+                        foreach(var lang in country.Languages.GetType().GetProperties())
+                        {
+                            var langValue = lang.GetValue(country.Languages);
+
+                            if(langValue != null)
+                            {
+                                if(languages != "")
+                                {
+                                    languages += $", {langValue}";
+                                }
+                                else
+                                {
+                                    languages = langValue.ToString();
+                                }
+                            }
+                        }
+                    }
+
+                    <tr>
+                        <td>@country.Name.Official</td>
+                        <td>@capitals</td>
+                        <td>@country.Region</td>
+                        <td>@languages</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

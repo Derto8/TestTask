@@ -2,6 +2,6 @@
 {
     public class Name
     {
-        public string official { get; set; }
+        public string Official { get; set; }
     }
 }

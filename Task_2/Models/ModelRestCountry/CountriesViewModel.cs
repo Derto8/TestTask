@@ -2,7 +2,9 @@
 {
     public class CountriesViewModel
     {
-        public Name name { get; set; }
-        public string[] capital { get; set; }
+        public Name Name { get; set; }
+        public string[] Capital { get; set; }
+        public string Region { get; set; }
+        public Languages Languages { get; set; }
     }
 }

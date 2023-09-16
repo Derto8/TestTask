@@ -8,6 +8,7 @@ namespace Task_2
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddMvc();
 
             var app = builder.Build();
 
