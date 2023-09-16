@@ -8,6 +8,8 @@ namespace Task_2
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // добавил, чтобы в action контроллера передавался CancellationToken
             builder.Services.AddMvc();
 
             var app = builder.Build();

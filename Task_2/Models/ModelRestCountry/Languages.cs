@@ -1,5 +1,8 @@
 ﻿namespace Task_2.Models.ModelRestCountry
 {
+    /// <summary>
+    /// Дополнительная модель языков к основной
+    /// </summary>
     public class Languages
     {
         public string ara { get; set; }

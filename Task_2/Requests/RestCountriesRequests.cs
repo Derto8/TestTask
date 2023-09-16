@@ -5,6 +5,11 @@ namespace Task_2.Requests
 {
     public static class RestCountriesRequests
     {
+        /// <summary>
+        /// Запрос на получение всех данных стран с API
+        /// </summary>
+        /// <param name="cancellationToken">Токен отмены задачи</param>
+        /// <returns>Список со всеми данными стран</returns>
         public static async Task<List<CountriesViewModel>> GetAllCountriesAsync(CancellationToken cancellationToken)
         {
             using(var client = new HttpClient())
@@ -22,6 +27,12 @@ namespace Task_2.Requests
             }
         }
 
+        /// <summary>
+        /// Запрос на получение данных одной страны с API
+        /// </summary>
+        /// <param name="nameCountry">Название страны</param>
+        /// <param name="cancellationToken">Токен отмены задачи</param>
+        /// <returns>Возвращает одну страну по её названию</returns>
         public static async Task<List<CountriesViewModel>> GetCountryAsync(string nameCountry, CancellationToken cancellationToken)
         {
             using (var client = new HttpClient())

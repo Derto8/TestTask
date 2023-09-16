@@ -1,5 +1,8 @@
 ﻿namespace Task_2.Models.ModelRestCountry
 {
+    /// <summary>
+    /// Основная модель для получения данных из json
+    /// </summary>
     public class CountriesViewModel
     {
         public Name Name { get; set; }
